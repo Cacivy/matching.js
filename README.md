@@ -15,11 +15,14 @@ yarn add mathing.js
 ```typescript
 import matching from 'mathing.js'
 
-matching('it's a *highlight code*!', {
+matching('interface *highlight code* end', {
   startChar: '*',
   endChar: '*',
   cb: (str) => (<span class="hign-light">{str}</span>)
 })
+
+// output
+['interface', <span class="hign-light">highlight code</span>, ' end']
 ```
 
 ### Interface Type
