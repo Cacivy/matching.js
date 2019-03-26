@@ -3,17 +3,17 @@
 ### Install
 
 ```node
-npm install mathing.js -S
+npm install matching.js -S
 
 or
 
-yarn add mathing.js
+yarn add matching.js
 ```
 
 ### Usage
 
 ```typescript
-import matching from 'mathing.js'
+import matching from 'matching.js'
 
 matching('interface *highlight code* end', {
   startChar: '*',
@@ -28,7 +28,7 @@ matching('interface *highlight code* end', {
 ### Interface Type
 
 ```typescript
-type Mathing<T = any> = (str: string, option: Option<T>) => T[]
+type Matching<T = any> = (str: string, option: Option<T>) => T[]
 
 interface Option<T> {
   /**
@@ -48,4 +48,10 @@ interface Option<T> {
    */
   isGreedy?: boolean
 }
+```
+
+### Dev
+
+```bash
+npm start
 ```

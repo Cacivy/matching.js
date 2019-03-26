@@ -1,6 +1,6 @@
 import matching from '../src'
 
-test('Basic mathing width single Char', () => {
+test('Basic matching width single Char', () => {
   const result = matching('aaa[bbb]ccc', {
     startChar: '[',
     endChar: ']',

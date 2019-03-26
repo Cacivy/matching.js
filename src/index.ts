@@ -78,7 +78,7 @@ const matching: Matching = (str = '', option) => {
   return strList
 }
 
-export const mathingByRegExp: Matching = (str = '', option) => {
+export const matchingByRegExp: Matching = (str = '', option) => {
   const { startChar = '', endChar = '', cb, isGreedy = false } = option
 
   const regexp = new RegExp(`${startChar}(\\S*${isGreedy ? '?' : ''})${endChar}`)

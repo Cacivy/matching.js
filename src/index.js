@@ -10,9 +10,9 @@ var Status;
     Status[Status["init"] = 0] = "init";
     Status[Status["start"] = 1] = "start";
 })(Status = exports.Status || (exports.Status = {}));
-var mathing = function (str, option) {
+var matching = function (str, option) {
     if (str === void 0) { str = ''; }
-    var _a = option.startChar, startChar = _a === void 0 ? '' : _a, _b = option.endChar, endChar = _b === void 0 ? '' : _b, cb = option.cb, _c = option.isLazy, isLazy = _c === void 0 ? false : _c;
+    var _a = option.startChar, startChar = _a === void 0 ? '' : _a, _b = option.endChar, endChar = _b === void 0 ? '' : _b, cb = option.cb, _c = option.isGreedy, isGreedy = _c === void 0 ? false : _c;
     var strList = [];
     var tempStrArr = [];
     var status = Status.init;
@@ -38,19 +38,30 @@ var mathing = function (str, option) {
             continue;
         }
         if (val === endChar && status === Status.start) {
-            status = Status.init;
-            push(true);
+            if (isGreedy) {
+                push(true);
+                var first = strList[0], content = strList.slice(1);
+                strList = [first, content.join('')];
+                tempStrArr.push(val);
+            }
+            else {
+                push(true);
+                status = Status.init;
+            }
             continue;
         }
         tempStrArr.push(val);
     }
+    if (isGreedy) {
+        tempStrArr.splice(0, 1);
+    }
     push();
     return strList;
 };
-exports.mathingByRegExp = function (str, option) {
+exports.matchingByRegExp = function (str, option) {
     if (str === void 0) { str = ''; }
-    var _a = option.startChar, startChar = _a === void 0 ? '' : _a, _b = option.endChar, endChar = _b === void 0 ? '' : _b, cb = option.cb, _c = option.isLazy, isLazy = _c === void 0 ? false : _c;
-    var regexp = new RegExp(startChar + "(\\S*" + (isLazy ? '?' : '') + ")" + endChar);
+    var _a = option.startChar, startChar = _a === void 0 ? '' : _a, _b = option.endChar, endChar = _b === void 0 ? '' : _b, cb = option.cb, _c = option.isGreedy, isGreedy = _c === void 0 ? false : _c;
+    var regexp = new RegExp(startChar + "(\\S*" + (isGreedy ? '?' : '') + ")" + endChar);
     return str.split(regexp).filter(function (x) { return !!x; });
 };
-exports.default = mathing;
+exports.default = matching;
