@@ -11,7 +11,7 @@ steps:
   - npm install
   - git config --global user.email "609448234@qq.com"
   - git config --global user.name "cacivy"
-  - npm run codecov
+  - npm test
 
 trigger:
   branch:
