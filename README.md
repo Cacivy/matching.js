@@ -1,5 +1,7 @@
 ## matching.js
 
+[![codecov](https://codecov.io/gh/Cacivy/matching.js/branch/master/graph/badge.svg)](https://codecov.io/gh/Cacivy/matching.js)
+
 ### Install
 
 ```node
