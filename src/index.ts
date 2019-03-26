@@ -1,11 +1,23 @@
 export interface Option<T> {
+  /**
+   * start chartacter
+   */
   startChar: string
+  /**
+   * end chartacter
+   */
   endChar: string
+  /**
+   * matching map
+   */
   cb?: (str: string) => T
-  isLazy?: boolean
+  /**
+   * greedy mode
+   */
+  isGreedy?: boolean
 }
 
-export type Mathing<T = any> = (str: string, option: Option<T>) => T[]
+export type Matching<T = any> = (str: string, option: Option<T>) => T[]
 
 /**
  * step: init => start => init...
@@ -17,9 +29,9 @@ export enum Status {
   start
 }
 
-const mathing: Mathing = (str = '', option) => {
-  const { startChar = '', endChar = '', cb, isLazy = false } = option
-  const strList: string[] = []
+const matching: Matching = (str = '', option) => {
+  const { startChar = '', endChar = '', cb, isGreedy = false } = option
+  let strList: string[] = []
   let tempStrArr: string[] = []
   let status = Status.init
 
@@ -45,22 +57,32 @@ const mathing: Mathing = (str = '', option) => {
       continue
     }
     if (val === endChar && status === Status.start) {
-      status = Status.init
-      push(true)
+      if (isGreedy) {
+        push(true)
+        const [ first, ...content ] = strList
+        strList = [first, content.join('')]
+        tempStrArr.push(val)
+      } else {
+        push(true)
+        status = Status.init
+      }
       continue
     }
     tempStrArr.push(val)
+  }
+  if (isGreedy) {
+    tempStrArr.splice(0, 1)
   }
   push()
 
   return strList
 }
 
-export const mathingByRegExp: Mathing = (str = '', option) => {
-  const { startChar = '', endChar = '', cb, isLazy = false } = option
+export const mathingByRegExp: Matching = (str = '', option) => {
+  const { startChar = '', endChar = '', cb, isGreedy = false } = option
 
-  const regexp = new RegExp(`${startChar}(\\S*${isLazy ? '?' : ''})${endChar}`)
+  const regexp = new RegExp(`${startChar}(\\S*${isGreedy ? '?' : ''})${endChar}`)
   return str.split(regexp).filter(x => !!x)
 }
 
-export default mathing
+export default matching

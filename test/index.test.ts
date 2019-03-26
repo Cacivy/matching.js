@@ -1,7 +1,7 @@
-import mathing from '../src'
+import matching from '../src'
 
 test('Basic mathing width single Char', () => {
-  const result = mathing('aaa[bbb]ccc', {
+  const result = matching('aaa[bbb]ccc', {
     startChar: '[',
     endChar: ']',
   })
@@ -9,7 +9,7 @@ test('Basic mathing width single Char', () => {
 });
 
 test('Option cb return text', () => {
-  const result = mathing('aaa[bbb]ccc', {
+  const result = matching('aaa[bbb]ccc', {
     startChar: '[',
     endChar: ']',
     cb: (str: string) => str.slice(0, 1)
@@ -18,7 +18,7 @@ test('Option cb return text', () => {
 });
 
 test('Option cb return object', () => {
-  const result = mathing('aaa[bbb]ccc', {
+  const result = matching('aaa[bbb]ccc', {
     startChar: '[',
     endChar: ']',
     cb: (str: string) => ({ str })
@@ -27,9 +27,26 @@ test('Option cb return object', () => {
 });
 
 test('Multiple characters', () => {
-  const result = mathing('aaabbbcccddd', {
+  const result = matching('aaabbbcccddd', {
     startChar: 'bbb',
     endChar: 'ddd'
   })
   expect(result).toEqual(['aaa', 'ccc'])
+});
+
+test('Multiple content', () => {
+  const result = matching('aaa*bbb*ccc*ddd*', {
+    startChar: '*',
+    endChar: '*'
+  })
+  expect(result).toEqual(['aaa', 'bbb', 'ccc', 'ddd'])
+});
+
+test('Multiple content & lazy', () => {
+  const result = matching('aaa*bbb*ccc*ddd*eee', {
+    startChar: '*',
+    endChar: '*',
+    isGreedy: true
+  })
+  expect(result).toEqual(['aaa', 'bbb*ccc*ddd', 'eee'])
 });
