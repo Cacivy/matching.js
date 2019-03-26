@@ -1,0 +1,22 @@
+kind: pipeline
+name: default
+
+steps:
+- name: ci
+  image: node
+  environment:
+    CODECOV_TOKEN:
+      from_secret: CODECOV_TOKEN
+  commands:
+  - npm install
+  - git config --global user.email "609448234@qq.com"
+  - git config --global user.name "cacivy"
+  - npm run codecov
+
+trigger:
+  branch:
+  - master
+  event:
+  - push
+  - pull_request
+  - tag
