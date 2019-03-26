@@ -65,3 +65,4 @@ exports.matchingByRegExp = function (str, option) {
     return str.split(regexp).filter(function (x) { return !!x; });
 };
 exports.default = matching;
+//# sourceMappingURL=index.js.map
