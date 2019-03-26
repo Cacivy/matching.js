@@ -58,11 +58,12 @@ var matching = function (str, option) {
     push();
     return strList;
 };
-exports.matchingByRegExp = function (str, option) {
-    if (str === void 0) { str = ''; }
-    var _a = option.startChar, startChar = _a === void 0 ? '' : _a, _b = option.endChar, endChar = _b === void 0 ? '' : _b, cb = option.cb, _c = option.isGreedy, isGreedy = _c === void 0 ? false : _c;
-    var regexp = new RegExp(startChar + "(\\S*" + (isGreedy ? '?' : '') + ")" + endChar);
-    return str.split(regexp).filter(function (x) { return !!x; });
-};
+/*
+export const matchingByRegExp: Matching = (str = '', option) => {
+  const { startChar = '', endChar = '', cb, isGreedy = false } = option
+
+  const regexp = new RegExp(`${startChar}(\\S*${isGreedy ? '?' : ''})${endChar}`)
+  return str.split(regexp).filter(x => !!x)
+}
+*/
 exports.default = matching;
-//# sourceMappingURL=index.js.map
