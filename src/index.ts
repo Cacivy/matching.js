@@ -78,11 +78,13 @@ const matching: Matching = (str = '', option) => {
   return strList
 }
 
+/*
 export const matchingByRegExp: Matching = (str = '', option) => {
   const { startChar = '', endChar = '', cb, isGreedy = false } = option
 
   const regexp = new RegExp(`${startChar}(\\S*${isGreedy ? '?' : ''})${endChar}`)
   return str.split(regexp).filter(x => !!x)
 }
+*/
 
 export default matching
