@@ -1,6 +1,7 @@
 ## matching.js
 
 [![codecov](https://codecov.io/gh/Cacivy/matching.js/branch/master/graph/badge.svg)](https://codecov.io/gh/Cacivy/matching.js)
+[![npm version](https://badge.fury.io/js/matching.js.svg)](https://badge.fury.io/js/matching.js)
 
 ### Install
 
