@@ -22,11 +22,11 @@ import matching from 'matching.js'
 matching('interface *highlight code* end', {
   startChar: '*',
   endChar: '*',
-  cb: (str) => (<span class="hign-light">{str}</span>)
+  cb: (str) => (<span className="hign-light">{str}</span>)
 })
 
 // output
-['interface', <span class="hign-light">highlight code</span>, ' end']
+['interface', <span className="hign-light">highlight code</span>, ' end']
 ```
 
 ### Interface Type
