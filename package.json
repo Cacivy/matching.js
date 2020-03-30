@@ -1,6 +1,6 @@
 {
   "name": "matching.js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/index.js",
   "module": "es/index.js",

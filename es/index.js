@@ -25,12 +25,12 @@ const matching = (str = '', option) => {
         tempStrArr = [];
     };
     for (let i = 0; i < str.length; i++) {
-        const length = Status.init ? startChar.length : endChar.length;
+        const length = status === Status.init ? startChar.length : endChar.length;
         const val = str.slice(i, i + length);
-        i += (length - 1);
         if (val === startChar && status === Status.init) {
             status = Status.start;
             push();
+            i += (length - 1);
             continue;
         }
         if (val === endChar && status === Status.start) {
@@ -44,9 +44,10 @@ const matching = (str = '', option) => {
                 push(true);
                 status = Status.init;
             }
+            i += (length - 1);
             continue;
         }
-        tempStrArr.push(val);
+        tempStrArr.push(str[i]);
     }
     if (isGreedy) {
         tempStrArr.splice(0, 1);
