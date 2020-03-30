@@ -50,3 +50,12 @@ test('Multiple content & lazy', () => {
   })
   expect(result).toEqual(['aaa', 'bbb*ccc*ddd', 'eee'])
 });
+
+test('different char', () => {
+  const result = matching('aaa[[bbb]ccc', {
+    startChar: '[[',
+    endChar: ']',
+  })
+  expect(result).toEqual(['aaa', 'bbb', 'ccc'])
+});
+
