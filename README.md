@@ -1,5 +1,6 @@
 ## matching.js
 
+![Node.js CI](https://github.com/Cacivy/matching.js/workflows/Node.js%20CI/badge.svg)
 [![codecov](https://codecov.io/gh/Cacivy/matching.js/branch/master/graph/badge.svg)](https://codecov.io/gh/Cacivy/matching.js)
 [![npm version](https://badge.fury.io/js/matching.js.svg)](https://badge.fury.io/js/matching.js)
 
