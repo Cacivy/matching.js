@@ -1,12 +1,15 @@
 {
   "name": "matching.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "module": "es/index.js",
   "scripts": {
     "start": "npm test && npm run build",
     "test": "jest",
-    "build": "tsc --skipLibCheck",
+    "build": "npm run build:dist & npm run build:es",
+    "build:dist": "tsc --skipLibCheck -m umd --outDir dist",
+    "build:es": "tsc --skipLibCheck -m es2015 --outDir es",
     "codecov": "jest --coverage && codecov"
   },
   "repository": {
