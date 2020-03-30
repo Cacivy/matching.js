@@ -27,6 +27,7 @@ jobs:
         super_secret: ${{ secrets.CODECOV_TOKEN }}
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm run codecov -t :"$SUPER_SECRET"
+    - run: npm run codecov
       env:
         CI: true
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
